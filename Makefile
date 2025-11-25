@@ -1,17 +1,17 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_isalpha.c \
+SRC = ft_printf.c
 
 OBJ = $(SRC:.c=.o)
 NAME = libftprintf.a
-HEADER = .
+HEADER = includes
 
 $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I. -o $@ -c $<
+%.o:%.c
+	$(CC) $(CFLAGS) -I$(HEADER) -o $@ -c $<
 
 all: $(NAME)
 
