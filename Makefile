@@ -7,13 +7,13 @@ OBJ = $(SRC:.c=.o)
 NAME = libftprintf.a
 HEADER = includes
 
+all: $(NAME)
+
 $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
 %.o:%.c
 	$(CC) $(CFLAGS) -I$(HEADER) -o $@ -c $<
-
-all: $(NAME)
 
 clean:
 	rm -rf $(OBJ)
