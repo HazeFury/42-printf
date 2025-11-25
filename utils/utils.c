@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marberge <marberge@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 12:33:01 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/25 23:19:21 by marberge         ###   ########.fr       */
+/*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
+/*   Updated: 2025/11/25 23:23:10 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "../includes/libftprintf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stddef.h>
+void	ft_add_to_buffer(char *buffer, va_list args, size_t char_count)
+{
+	(void)buffer;
+	(void)args;
+	(void)char_count;
+	return ;
+}
 
-int		ft_printf(const char *str, ...);
-int		ft_is_sign(char c);
-void	ft_add_to_buffer(char *buffer, va_list args, size_t char_count);
+int	ft_is_sign(char c)
+{
+	char	*signs;
+	int		i;
 
-#endif
+	i = 0;
+	signs = "cspdiuxX%";
+	while (signs[i])
+	{
+		if (signs[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}

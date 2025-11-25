@@ -9,11 +9,11 @@ HEADER = includes
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
-
 %.o:%.c
 	$(CC) $(CFLAGS) -I$(HEADER) -o $@ -c $<
+
+$(NAME): $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
