@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/26 14:50:48 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:28:35 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,26 @@
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	size_t	char_count;
+	int		count;
 	char	buffer[1024];
 	int		i;
 	int		check_err;
 
 	i = 0;
-	char_count = 0;
+	count = 0;
 	if (!str)
-		return (0);
+		return (-1);
 	va_start(args, str);
-	while (str[i])
-	{
-		if (str[i] == '%' && ft_is_sign(str[i + 1]) == 1)
-		{
-			ft_manage_sign(str[i + 1], buffer, args, &char_count);
-			i += 2;
-		}
-		else
-		{
-			buffer[char_count] = str[i];
-			char_count++;
-			i++;
-		}
-	}
-	check_err = write(1, buffer, char_count);
+	count = ft_parsing_str(str, buffer, args);
+	check_err = write(1, buffer, count);
 	va_end(args);
-	return (char_count);
+	return (count);
 }
 
 int	main(void)
 {
-	ft_printf("toto %c et %c tata\n", 'A', 'U');
+	printf("toto %c et %c tata \n", 'A', 'U');
+	// printf("%d\n", ft_printf("toto %c et %c tata\n", 'A', 'U'));
+	// printf("%d\n", printf("toto %c et %c tata\n", 'A', 'U'));
 	return (0);
 }

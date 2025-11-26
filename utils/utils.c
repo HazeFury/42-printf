@@ -6,29 +6,44 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/26 14:52:00 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:31:53 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libftprintf.h"
 
-void	ft_manage_sign(char c, char *buffer, va_list args, size_t *char_count)
+int	ft_parsing_str(const char *str, char *buffer, va_list args, int *count)
 {
-	if (c == 'c')
-		ft_add_char(buffer, va_arg(args, int), char_count);
+	int	i;
+	int	res;
+	
+	i = 0;
+	res = 0;
+	while (str[i])
+	{
+		if (str[i] == '%' && ft_is_sign(str[i + 1]) == 1)
+		{
+			res += ft_manage_sign(str[i + 1], buffer, args, count);
+			i += 2;
+		}
+		else
+		{
+			buffer[*count] = str[i];
+			*count += 1;
+			i++;
+		}
+	}
+	return (res);
 }
 
-void	ft_add_char(char *buffer, char char_to_add, size_t *char_count)
+int	ft_manage_sign(char c, char *buffer, va_list args, int *count)
 {
-	int	len;
+	int	res;
 
-	len = ft_strlen(buffer);
-	if (len + 1 < 1024)
-	{
-		buffer[*char_count] = char_to_add;
-		*char_count += 1;
-		len++;
-	}
+	res = 0;
+	if (c == 'c')
+		res = ft_add_char(buffer, va_arg(args, int), count);
+	return (res);
 }
 
 int	ft_is_sign(char c)
@@ -45,12 +60,4 @@ int	ft_is_sign(char c)
 		i++;
 	}
 	return (0);
-}
-
-void	ft_add_to_buffer(char *buffer, va_list args, size_t char_count)
-{
-	(void)buffer;
-	(void)args;
-	(void)char_count;
-	return ;
 }
