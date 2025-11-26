@@ -1,41 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
+/*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
 /*   Updated: 2025/11/26 17:02:53 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libftprintf.h"
+#include "../includes/libftprintf.h"
 
-int	ft_printf(const char *str, ...)
+void	ft_add_to_buffer(char *str, char *buffer, va_list args, int *count)
 {
-	va_list	args;
-	int		count;
-	char	buffer[1024];
-	int		i;
-	int		check_err;
+	int	len_buff;
+	int	len_str;
+	int	i;
 
 	i = 0;
-	count = 0;
-	if (!str)
-		return (-1);
-	va_start(args, str);
-	count = ft_parsing_str(str, buffer, args);
-	check_err = write(1, buffer, count);
-	va_end(args);
-	return (count);
+	len_buff = ft_strlen(buffer);
+	len_str = ft_strlen(str);
+	if (len_buff + len_str < 1024)
+	{
+		while (str[i])
+		{
+			buffer[*count] = str[i];
+			i++;
+		}
+		*count += i;
+		len_buff++;
+	}
 }
 
-int	main(void)
+int	ft_add_char(char *buffer, char char_to_add, int *index)
 {
-	printf("toto %c et %c tata \n", 'A', 'U');
-	// printf("%d\n", ft_printf("toto %c et %c tata\n", 'A', 'U'));
-	// printf("%d\n", printf("toto %c et %c tata\n", 'A', 'U'));
-	return (0);
+	int	len;
+
+	len = ft_strlen(buffer);
+	if (len + 1 < 1024)
+	{
+		buffer[*index] = char_to_add;
+		*index += 1;
+	}
+	return (1);
 }
