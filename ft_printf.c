@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marberge <marberge@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/25 23:11:46 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/26 14:50:48 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	int		char_count;
+	size_t	char_count;
 	char	buffer[1024];
 	int		i;
+	int		check_err;
 
 	i = 0;
 	char_count = 0;
@@ -29,20 +30,23 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%' && ft_is_sign(str[i + 1]) == 1)
 		{
-			ft_add_to_buffer(buffer, args, char_count);
+			ft_manage_sign(str[i + 1], buffer, args, &char_count);
+			i += 2;
 		}
-		buffer[char_count] = str[i];
-		char_count++;
-		i++;
+		else
+		{
+			buffer[char_count] = str[i];
+			char_count++;
+			i++;
+		}
 	}
-	write(1, buffer, char_count);
+	check_err = write(1, buffer, char_count);
 	va_end(args);
 	return (char_count);
 }
 
-// printf("%d\n", va_arg(args, int));
 int	main(void)
 {
-	ft_printf("toto");
+	ft_printf("toto %c et %c tata\n", 'A', 'U');
 	return (0);
 }
