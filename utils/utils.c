@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/26 16:31:53 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:51:18 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_parsing_str(const char *str, char *buffer, va_list args, int *count)
 	{
 		if (str[i] == '%' && ft_is_sign(str[i + 1]) == 1)
 		{
-			res += ft_manage_sign(str[i + 1], buffer, args, count);
+			res += ft_manage_sign(str + i, &i, buffer, args);
 			i += 2;
 		}
 		else
@@ -36,13 +36,15 @@ int	ft_parsing_str(const char *str, char *buffer, va_list args, int *count)
 	return (res);
 }
 
-int	ft_manage_sign(char c, char *buffer, va_list args, int *count)
+int	ft_manage_sign(char c, int *index, char *buffer, va_list args)
 {
 	int	res;
 
 	res = 0;
 	if (c == 'c')
-		res = ft_add_char(buffer, va_arg(args, int), count);
+		res = ft_add_char(buffer, va_arg(args, int), index);
+	if (c == 's')
+		res = ft_add_char(buffer, va_arg(args, char*), index);
 	return (res);
 }
 

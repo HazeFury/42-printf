@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:24:05 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/26 12:26:46 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:02:48 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,4 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+int	ft_add_str(buffer, va_arg(args, char*), index)
