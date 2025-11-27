@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 12:16:11 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/27 13:17:35 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_printf(const char *str, ...)
 	int		count;
 	char	buffer[1024];
 	int		i;
-	int		check_err;
 
 	i = 0;
 	count = 0;
@@ -27,15 +26,16 @@ int	ft_printf(const char *str, ...)
 		return (-1);
 	va_start(args, str);
 	count = ft_parsing_str(str, buffer, args);
-	check_err = write(1, buffer, count);
+	count = write(1, buffer, count);
 	va_end(args);
 	return (count);
 }
 
 int	main(void)
 {
-	printf("toto %s et %s tata \n", "HELLO", "MARCO");
-	// printf("%d\n", ft_printf("toto %c et %c tata\n", 'A', 'U'));
-	// printf("%d\n", printf("toto %c et %c tata\n", 'A', 'U'));
+	printf("%d\n", ft_printf("%%d = %d et %%i = %i\n", 5, 5));
+	printf("%d\n", printf("%%d = %d et %%i = %i\n", 5, 5));
 	return (0);
 }
+// printf("%d\n", ft_printf("toto %s%% et %s tata \n", "HELLO", "MARCO"));
+// printf("%d\n", printf("toto %s%% et %s tata \n", "HELLO", "MARCO"));

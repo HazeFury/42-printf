@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 12:13:52 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/27 13:17:46 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,17 @@ int	ft_add_char(char *buffer, int *buf_index, char char_to_add)
 		*buf_index += 1;
 	}
 	return (1);
+}
+
+int	ft_add_number(char *buffer, int *buf_index, int nb)
+{
+	char	*str;
+	int		len;
+
+	str = ft_itoa(nb);
+	if (!str)
+		return (0);
+	len = ft_add_to_buffer(buffer, buf_index, str);
+	free(str);
+	return (len);
 }
