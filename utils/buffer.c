@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 13:17:46 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/27 17:12:12 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ int	ft_add_number(char *buffer, int *buf_index, int nb)
 	int		len;
 
 	str = ft_itoa(nb);
+	if (!str)
+		return (0);
+	len = ft_add_to_buffer(buffer, buf_index, str);
+	free(str);
+	return (len);
+}
+
+int	ft_add_unsigned_nb(char *buffer, int *buf_index, unsigned int nb)
+{
+	char	*str;
+	int		len;
+
+	str = ft_unsigned_itoa(nb);
 	if (!str)
 		return (0);
 	len = ft_add_to_buffer(buffer, buf_index, str);
