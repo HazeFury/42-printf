@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 13:14:48 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/27 17:08:37 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	ft_manage_sign(char c, char *buffer, int *buf_index, va_list args)
 		res = ft_add_to_buffer(buffer, buf_index, va_arg(args, char *));
 	if (c == 'd' || c == 'i')
 		res = ft_add_number(buffer, buf_index, va_arg(args, int));
+	if (c == 'u')
+		res = ft_add_unsigned_nb(buffer, buf_index, va_arg(args, unsigned int));
 	if (c == '%')
 		res = ft_add_char(buffer, buf_index, '%');
 	return (res);
