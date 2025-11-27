@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:01 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 17:12:07 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:04:25 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		ft_add_char(char *buffer, int *buf_index, char char_to_add);
 int		ft_add_to_buffer(char *buffer, int *buf_index, char *str_to_add);
 int		ft_add_number(char *buffer, int *buf_index, int nb);
 int		ft_add_unsigned_nb(char *buffer, int *buf_index, unsigned int nb);
+int		ft_add_adress(char *buffer, int *buf_index, void *ptr);
 int		ft_parsing_str(const char *str, char *buffer, va_list args);
 int		ft_is_sign(char c);
 size_t	ft_strlen(const char *s);
