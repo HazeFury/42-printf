@@ -6,45 +6,48 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/26 16:51:18 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/27 12:12:56 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libftprintf.h"
 
-int	ft_parsing_str(const char *str, char *buffer, va_list args, int *count)
+int	ft_parsing_str(const char *str, char *buffer, va_list args)
 {
 	int	i;
+	int	buf_index;
 	int	res;
-	
+
 	i = 0;
+	buf_index = 0;
 	res = 0;
 	while (str[i])
 	{
 		if (str[i] == '%' && ft_is_sign(str[i + 1]) == 1)
 		{
-			res += ft_manage_sign(str + i, &i, buffer, args);
+			res += ft_manage_sign(str[i + 1], buffer, &buf_index, args);
 			i += 2;
 		}
 		else
 		{
-			buffer[*count] = str[i];
-			*count += 1;
+			buffer[buf_index] = str[i];
+			buf_index += 1;
 			i++;
+			res += 1;
 		}
 	}
 	return (res);
 }
 
-int	ft_manage_sign(char c, int *index, char *buffer, va_list args)
+int	ft_manage_sign(char c, char *buffer, int *buf_index, va_list args)
 {
 	int	res;
 
 	res = 0;
 	if (c == 'c')
-		res = ft_add_char(buffer, va_arg(args, int), index);
+		res = ft_add_char(buffer, buf_index, va_arg(args, int));
 	if (c == 's')
-		res = ft_add_char(buffer, va_arg(args, char*), index);
+		res = ft_add_to_buffer(buffer, buf_index, va_arg(args, char*));
 	return (res);
 }
 
