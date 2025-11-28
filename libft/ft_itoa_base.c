@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 11:21:59 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/28 11:50:59 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:15:34 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ static int	ft_count_len(unsigned long n)
 	return (size);
 }
 
-char	*ft_itoa_base(unsigned long n)
+char	*ft_itoa_base(unsigned long n, int is_lowercase)
 {
 	char	*str;
 	int		len;
 	char	*base;	
 
-	base = "0123456789abcdef";
+	if (is_lowercase == 1)
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
 	len = ft_count_len(n);
 	str = malloc((len + 1) * sizeof(char));
 	if (str == NULL)

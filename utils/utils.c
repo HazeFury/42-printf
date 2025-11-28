@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 18:21:14 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:22:13 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ int	ft_manage_sign(char c, char *buffer, int *buf_index, va_list args)
 	if (c == 'u')
 		res = ft_add_unsigned_nb(buffer, buf_index, va_arg(args, unsigned int));
 	if (c == 'p')
-		res = ft_add_adress(buffer, buf_index, va_arg(args, void *));
+		res = ft_add_adress(buffer, buf_index, va_arg(args, void *), 1);
+	if (c == 'x')
+		res = ft_add_hexa(buffer, buf_index, va_arg(args, int), 1);
+	if (c == 'X')
+		res = ft_add_hexa(buffer, buf_index, va_arg(args, int), 0);
 	if (c == '%')
 		res = ft_add_char(buffer, buf_index, '%');
 	return (res);
@@ -73,4 +77,17 @@ int	ft_is_sign(char c)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_add_unsigned_nb(char *buffer, int *buf_index, unsigned int nb)
+{
+	char	*str;
+	int		len;
+
+	str = ft_unsigned_itoa(nb);
+	if (!str)
+		return (0);
+	len = ft_add_to_buffer(buffer, buf_index, str);
+	free(str);
+	return (len);
 }
