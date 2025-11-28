@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 18:16:05 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/28 11:50:24 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	void *ptr;
+	void	*ptr;
 
 	ptr = NULL;
-	printf("--%d--\n", ft_printf("%p\n", &ptr));
+	printf("--%d--\n", ft_printf(">>%p<<\n", &ptr));
+	printf("--%d--\n", printf(">>%p<<\n", &ptr));
 	return (0);
 }
 // printf("%d\n", ft_printf("toto %s%% et %s tata \n", "HELLO", "MARCO"));

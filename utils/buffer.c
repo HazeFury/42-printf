@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/27 18:21:30 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/28 11:51:20 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,16 @@ int	ft_add_unsigned_nb(char *buffer, int *buf_index, unsigned int nb)
 
 int	ft_add_adress(char *buffer, int *buf_index, void *ptr)
 {
-	(void)buffer;
-	(void)buf_index;
-	printf("%p\n", ptr);
-	unsigned long adress;
+	char			*str;
+	int				len;
+	unsigned long	ptr_as_ulong;
 
-	adress = (unsigned long)ptr;
-	printf("%lu\n", adress);
-	return (0);
+	ptr_as_ulong = (unsigned long)ptr;
+	str = ft_itoa_base(ptr_as_ulong);
+	if (!str)
+		return (0);
+	len = ft_add_to_buffer(buffer, buf_index, "0x");
+	len += ft_add_to_buffer(buffer, buf_index, str);
+	free(str);
+	return (len);
 }
