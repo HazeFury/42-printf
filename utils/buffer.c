@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/28 12:30:50 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/28 18:47:57 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ int	ft_add_to_buffer(char *buffer, int *buf_index, char *str_to_add)
 	int	len_str_to_add;
 	int	i;
 
-	i = 0;
 	len_buff = ft_strlen(buffer);
 	len_str_to_add = ft_strlen(str_to_add);
 	if (len_buff + len_str_to_add >= 1024)
-		ft_flush_buffer(buffer, buf_index);
+	{
+		i = ft_flush_buffer(buffer, buf_index);
+		if (i == -1)
+			return (0);
+	}
+	i = 0;
 	while (str_to_add[i])
 	{
 		buffer[*buf_index] = str_to_add[i];
@@ -35,14 +39,18 @@ int	ft_add_to_buffer(char *buffer, int *buf_index, char *str_to_add)
 
 int	ft_add_char(char *buffer, int *buf_index, char char_to_add)
 {
-	int	len;
+	int	len_buff;
+	int	i;
 
-	len = ft_strlen(buffer);
-	if (len + 1 < 1024)
+	len_buff = ft_strlen(buffer);
+	if (len_buff + 1 >= 1024)
 	{
-		buffer[*buf_index] = char_to_add;
-		*buf_index += 1;
+		i = ft_flush_buffer(buffer, buf_index);
+		if (i == -1)
+			return (0);
 	}
+	buffer[*buf_index] = char_to_add;
+	*buf_index += 1;
 	return (1);
 }
 
@@ -59,14 +67,14 @@ int	ft_add_number(char *buffer, int *buf_index, int nb)
 	return (len);
 }
 
-int	ft_add_adress(char *buffer, int *buf_index, void *ptr, int is_lowercase)
+int	ft_add_adress(char *buffer, int *buf_index, void *ptr, int is_lower)
 {
 	char			*str;
 	int				len;
 	unsigned long	ptr_as_ulong;
 
 	ptr_as_ulong = (unsigned long)ptr;
-	str = ft_itoa_base(ptr_as_ulong, is_lowercase);
+	str = ft_itoa_base(ptr_as_ulong, is_lower);
 	if (!str)
 		return (0);
 	len = ft_add_to_buffer(buffer, buf_index, "0x");
@@ -75,14 +83,14 @@ int	ft_add_adress(char *buffer, int *buf_index, void *ptr, int is_lowercase)
 	return (len);
 }
 
-int	ft_add_hexa(char *buffer, int *buf_index, int nb, int is_lowercase)
+int	ft_add_hexa(char *buffer, int *buf_index, int nb, int is_lower)
 {
 	char			*str;
 	int				len;
 	unsigned long	int_as_ulong;
 
 	int_as_ulong = (unsigned long)nb;
-	str = ft_itoa_base(int_as_ulong, is_lowercase);
+	str = ft_itoa_base(int_as_ulong, is_lower);
 	if (!str)
 		return (0);
 	len = ft_add_to_buffer(buffer, buf_index, str);
