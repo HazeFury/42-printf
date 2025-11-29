@@ -6,11 +6,11 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 11:21:59 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/28 12:15:34 by marberge         ###   ########.fr       */
+/*   Updated: 2025/11/28 18:55:51 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 static int	ft_count_len(unsigned long n)
 {
