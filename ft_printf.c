@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/01 12:42:37 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:22:32 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,20 @@ int	ft_printf(const char *str, ...)
 
 // int	main(void)
 // {
-// 	// void	*ptr;
-// 	unsigned int	nb;
+// 	void	*ptr;
 
-// 	nb = -756389;
-// 	// ptr = NULL;
-// 	// printf("--%d--\n", ft_printf(">>%p<<\n", &ptr));
-// 	// printf("--%d--\n", printf(">>%p<<\n", &ptr));
-// 	printf("%d\n", ft_printf(" %p %p ", (void *)0, (void *)0));
-// 	printf("%d\n", printf(" %p %p ", (void *)0, (void *)0));
+// 	ptr = NULL;
+// 	printf(" => %d\n", ft_printf("char : %c", 'H'));
+// 	printf(" => %d\n\n", printf("char : %c", 'H'));
+// 	printf(" => %d\n", ft_printf("string : %s", "Hello world"));
+// 	printf(" => %d\n\n", printf("string : %s", "Hello world"));
+// 	printf(" => %d\n", ft_printf("number %%d : %d", 3));
+// 	printf(" => %d\n\n", printf("number %%d : %d", 3));
+// 	printf(" => %d\n", ft_printf("number2 : %%i : %i | %%u : %u", 6, 9));
+// 	printf(" => %d\n\n", printf("number2 : %%i : %i | %%u : %u", 6, 9));
+// 	printf(" => %d\n", ft_printf("hexa : %%x : %x | %%X : %X", 756389, 756389));
+// 	printf(" => %d\n\n", printf("hexa : %%x : %x | %%X : %X", 756389, 756389));
+// 	printf(" => %d\n", ft_printf("pointer : %p | %p ", &ptr, (void *)0));
+// 	printf(" => %d\n\n", printf("pointer : %p | %p ", &ptr, (void *)0));
 // 	return (0);
 // }
-// printf("%d\n", ft_printf("toto %s%% et %s tata \n", "HELLO", "MARCO"));
-// printf("%d\n", printf("toto %s%% et %s tata \n", "HELLO", "MARCO"));
-
-// printf("%d\n", ft_printf("%%d = %d et %%i = %i et %%u = %u\n", 5, 5, ui));
-// printf("%d\n", printf("%%d = %d et %%i = %i et %%u = %u\n", 5, 5, ui));
