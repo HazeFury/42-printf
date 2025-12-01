@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/28 18:55:51 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/01 12:43:57 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_add_to_buffer(char *buffer, int *buf_index, char *str_to_add)
 	int	len_str_to_add;
 	int	i;
 
+	if (!str_to_add)
+		str_to_add = "(null)";
 	len_buff = ft_strlen(buffer);
 	len_str_to_add = ft_strlen(str_to_add);
 	if (len_buff + len_str_to_add >= 1024)
@@ -73,24 +75,29 @@ int	ft_add_adress(char *buffer, int *buf_index, void *ptr, int is_lower)
 	int				len;
 	unsigned long	ptr_as_ulong;
 
-	ptr_as_ulong = (unsigned long)ptr;
-	str = ft_itoa_base(ptr_as_ulong, is_lower);
-	if (!str)
-		return (0);
-	len = ft_add_to_buffer(buffer, buf_index, "0x");
-	len += ft_add_to_buffer(buffer, buf_index, str);
-	free(str);
+	if (!ptr)
+		len = ft_add_to_buffer(buffer, buf_index, "(nil)");
+	else
+	{
+		ptr_as_ulong = (unsigned long)ptr;
+		str = ft_itoa_base(ptr_as_ulong, is_lower);
+		if (!str)
+			return (0);
+		len = ft_add_to_buffer(buffer, buf_index, "0x");
+		len += ft_add_to_buffer(buffer, buf_index, str);
+		free(str);
+	}
 	return (len);
 }
 
-int	ft_add_hexa(char *buffer, int *buf_index, int nb, int is_lower)
+int	ft_add_hexa(char *buffer, int *buf_index, unsigned int nb, int is_lwr)
 {
 	char			*str;
 	int				len;
-	unsigned long	int_as_ulong;
+	unsigned long	uint_as_ulong;
 
-	int_as_ulong = (unsigned long)nb;
-	str = ft_itoa_base(int_as_ulong, is_lower);
+	uint_as_ulong = (unsigned long)nb;
+	str = ft_itoa_base(uint_as_ulong, is_lwr);
 	if (!str)
 		return (0);
 	len = ft_add_to_buffer(buffer, buf_index, str);

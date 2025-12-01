@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/28 18:55:51 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/01 12:42:37 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_printf(const char *str, ...)
 	if (!str)
 		return (-1);
 	va_start(args, str);
+	ft_bzero(buffer, 1024);
 	count = ft_parsing_str(str, buffer, args);
 	count = write(1, buffer, count);
 	va_end(args);
@@ -36,12 +37,12 @@ int	ft_printf(const char *str, ...)
 // 	// void	*ptr;
 // 	unsigned int	nb;
 
-// 	nb = 756389;
+// 	nb = -756389;
 // 	// ptr = NULL;
 // 	// printf("--%d--\n", ft_printf(">>%p<<\n", &ptr));
 // 	// printf("--%d--\n", printf(">>%p<<\n", &ptr));
-// 	printf("%d\n", ft_printf("%X\n", nb));
-// 	printf("%d\n", printf("%X\n", nb));
+// 	printf("%d\n", ft_printf(" %p %p ", (void *)0, (void *)0));
+// 	printf("%d\n", printf(" %p %p ", (void *)0, (void *)0));
 // 	return (0);
 // }
 // printf("%d\n", ft_printf("toto %s%% et %s tata \n", "HELLO", "MARCO"));
