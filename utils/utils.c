@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/11/28 18:55:51 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:05:59 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	ft_manage_sign(char c, char *buffer, int *buf_index, va_list args)
 	if (c == 'p')
 		res = ft_add_adress(buffer, buf_index, va_arg(args, void *), 1);
 	if (c == 'x')
-		res = ft_add_hexa(buffer, buf_index, va_arg(args, int), 1);
+		res = ft_add_hexa(buffer, buf_index, va_arg(args, unsigned int), 1);
 	if (c == 'X')
-		res = ft_add_hexa(buffer, buf_index, va_arg(args, int), 0);
+		res = ft_add_hexa(buffer, buf_index, va_arg(args, unsigned int), 0);
 	if (c == '%')
 		res = ft_add_char(buffer, buf_index, '%');
 	return (res);
@@ -94,7 +94,7 @@ int	ft_flush_buffer(char *buffer, int *buf_index)
 	count = write(1, buffer, *buf_index);
 	if (count == -1)
 		return (count);
-	ft_bzero(buffer, sizeof(buffer));
+	ft_bzero(buffer, 1024);
 	*buf_index = 0;
 	return (0);
 }
