@@ -12,11 +12,11 @@ SRC = ft_printf.c \
 
 OBJ = $(SRC:.c=.o)
 NAME = libftprintf.a
-HEADER = includes
+HEADER = includes/ft_printf.h
 
 all: $(NAME)
 
-%.o:%.c
+%.o:%.c $(HEADER)
 	$(CC) $(CFLAGS) -I$(HEADER) -o $@ -c $<
 
 $(NAME): $(OBJ)
