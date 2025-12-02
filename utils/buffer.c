@@ -6,12 +6,11 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/01 12:43:57 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/02 10:36:07 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 int	ft_add_to_buffer(char *buffer, int *buf_index, char *str_to_add)
 {

@@ -6,11 +6,10 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/01 16:16:37 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/02 10:37:50 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "includes/ft_printf.h"
 
 int	ft_printf(const char *str, ...)
@@ -32,16 +31,18 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
+// #include <stdio.h>
+
 // int	main(void)
 // {
-// 	void	*ptr;
+	// 	void	*ptr;
 
-// 	ptr = NULL;
-// 	printf(" => %d\n", ft_printf("char : %c", 'H'));
-// 	printf(" => %d\n\n", printf("char : %c", 'H'));
-// 	printf(" => %d\n", ft_printf("string : %s", "Hello world"));
-// 	printf(" => %d\n\n", printf("string : %s", "Hello world"));
-// 	printf(" => %d\n", ft_printf("number %%d : %d", 3));
+	// 	ptr = NULL;
+	// 	printf(" => %d\n", ft_printf("char : %c", 'H'));
+	// 	printf(" => %d\n\n", printf("char : %c", 'H'));
+	// 	printf(" => %d\n", ft_printf("string : %s", "Hello world"));
+	// 	printf(" => %d\n\n", printf("string : %s", "Hello world"));
+	// 	printf(" => %d\n", ft_printf("number %%d : %d", 3));
 // 	printf(" => %d\n\n", printf("number %%d : %d", 3));
 // 	printf(" => %d\n", ft_printf("number2 : %%i : %i | %%u : %u", 6, 9));
 // 	printf(" => %d\n\n", printf("number2 : %%i : %i | %%u : %u", 6, 9));
