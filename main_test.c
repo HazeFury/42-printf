@@ -77,7 +77,7 @@ int main(void)
     printf("char=%c %c %c\n", 'A', 0, 127);
 
     /* ------------------------------------------------------------ */
-    sep("Stress test: long string"); // echec de ce test => à corriger 
+    sep("Stress test: long string");
 
     char big[2000];
     for (int i = 0; i < 1999; i++)
