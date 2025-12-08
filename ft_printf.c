@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/08 19:47:00 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:56:37 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ int	ft_printf(const char *str, ...)
 // 	printf(" => %d\n\n", printf("hexa : %%x : %x | %%X : %X", 756389, 756389));
 // 	printf(" => %d\n", ft_printf("pointer : %p | %p ", &ptr, (void *)0));
 // 	printf(" => %d\n", printf("pointer : %p | %p ", &ptr, (void *)0));
-// 	printf(" => %d\n\n", printf(""));
 // 	return (0);
 // }
