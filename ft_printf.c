@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/08 12:10:59 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:44:21 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 	int		count;
 	char	buffer[BUFFER_SIZE];
-	int		i;
+	int		buf_index;
 
-	i = 0;
 	count = 0;
+	buf_index = 0;
 	if (!str)
 		return (-1);
 	va_start(args, str);
-	ft_bzero(buffer, 1024);
-	count = ft_parsing_str(str, buffer, args);
-	count = write(1, buffer, count);
+	ft_bzero(buffer, BUFFER_SIZE);
+	count = ft_parsing(str, buffer, &buf_index, args);
+	if (write(1, buffer, buf_index) == -1)
+		return (-1);
 	va_end(args);
 	return (count);
 }
@@ -50,5 +51,6 @@ int	ft_printf(const char *str, ...)
 // 	printf(" => %d\n\n", printf("hexa : %%x : %x | %%X : %X", 756389, 756389));
 // 	printf(" => %d\n", ft_printf("pointer : %p | %p ", &ptr, (void *)0));
 // 	printf(" => %d\n", printf("pointer : %p | %p ", &ptr, (void *)0));
+// 	printf(" => %d\n\n", printf(""));
 // 	return (0);
 // }
