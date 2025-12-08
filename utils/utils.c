@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/08 16:04:08 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:26:20 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_manage_sign(char c, char *buffer, int *buf_index, va_list args)
 	if (c == 'u')
 		res = ft_add_unsigned_nb(buffer, buf_index, va_arg(args, unsigned int));
 	if (c == 'p')
-		res = ft_add_adress(buffer, buf_index, va_arg(args, void *), 1);
+		res = ft_add_address(buffer, buf_index, va_arg(args, void *), 1);
 	if (c == 'x')
 		res = ft_add_hexa(buffer, buf_index, va_arg(args, unsigned int), 1);
 	if (c == 'X')
@@ -86,6 +86,7 @@ int	ft_parsing(const char *str, char *buffer, int *buf_index, va_list args)
 {
 	int	i;
 	int	res;
+	int	tmp;
 
 	i = 0;
 	res = 0;
@@ -93,14 +94,18 @@ int	ft_parsing(const char *str, char *buffer, int *buf_index, va_list args)
 	{
 		if (str[i] == '%' && ft_is_sign(str[i + 1]) == 1)
 		{
-			res += ft_manage_sign(str[i + 1], buffer, buf_index, args);
+			tmp = ft_manage_sign(str[i + 1], buffer, buf_index, args);
+			if (tmp == -1)
+				return (-1);
+			res += tmp;
 			i += 2;
+			continue ;
 		}
-		else
-		{
-			res += ft_add_char(buffer, buf_index, str[i]);
-			i++;
-		}
+		tmp = ft_add_char(buffer, buf_index, str[i]);
+		if (tmp == -1)
+			return (-1);
+		res += tmp;
+		i++;
 	}
 	return (res);
 }

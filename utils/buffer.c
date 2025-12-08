@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:11:15 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/08 14:34:23 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:50:02 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_add_to_buffer(char *buffer, int *buf_index, char *str_to_add)
 		if (*buf_index + 1 >= BUFFER_SIZE)
 		{
 			if (ft_flush_buffer(buffer, buf_index) == -1)
-				return (added);
+				return (-1);
 		}
 		buffer[*buf_index] = str_to_add[i];
 		(*buf_index)++;
@@ -41,15 +41,12 @@ int	ft_add_to_buffer(char *buffer, int *buf_index, char *str_to_add)
 
 int	ft_add_char(char *buffer, int *buf_index, char char_to_add)
 {
-	int	i;
-
 	if (!buffer || !buf_index)
 		return (0);
 	if (*buf_index + 1 >= BUFFER_SIZE)
 	{
-		i = ft_flush_buffer(buffer, buf_index);
-		if (i == -1)
-			return (0);
+		if (ft_flush_buffer(buffer, buf_index) == -1)
+			return (-1);
 	}
 	buffer[*buf_index] = char_to_add;
 	(*buf_index)++;
@@ -70,12 +67,14 @@ int	ft_add_number(char *buffer, int *buf_index, int nb)
 	return (len);
 }
 
-int	ft_add_adress(char *buffer, int *buf_index, void *ptr, int is_lower)
+int	ft_add_address(char *buffer, int *buf_index, void *ptr, int is_lower)
 {
 	char			*str;
+	int				prefix;
 	int				len;
 	unsigned long	ptr_as_ulong;
 
+	prefix = 0;
 	if (!ptr)
 		len = ft_add_to_buffer(buffer, buf_index, "(nil)");
 	else
@@ -84,11 +83,16 @@ int	ft_add_adress(char *buffer, int *buf_index, void *ptr, int is_lower)
 		str = ft_itoa_base(ptr_as_ulong, is_lower);
 		if (!str)
 			return (0);
-		len = ft_add_to_buffer(buffer, buf_index, "0x");
-		len += ft_add_to_buffer(buffer, buf_index, str);
+		prefix = ft_add_to_buffer(buffer, buf_index, "0x");
+		len = ft_add_to_buffer(buffer, buf_index, str);
+		if (len == -1 || prefix == -1)
+		{
+			free(str);
+			return (-1);
+		}
 		free(str);
 	}
-	return (len);
+	return (len + prefix);
 }
 
 int	ft_add_hexa(char *buffer, int *buf_index, unsigned int nb, int is_lwr)
