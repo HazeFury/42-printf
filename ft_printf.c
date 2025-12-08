@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/04 11:04:02 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:10:59 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		count;
-	char	buffer[1024];
+	char	buffer[BUFFER_SIZE];
 	int		i;
 
 	i = 0;

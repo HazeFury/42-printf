@@ -84,8 +84,8 @@ int main(void)
         big[i] = 'A' + (i % 26);
     big[1999] = 0;
 
-    ft_printf("BIG: %s\n", big);
     printf("BIG: %s\n", big);
+    ft_printf("BIG: %s\n", big);
 
     /* ------------------------------------------------------------ */
     sep("Stress test: chain with many %%%%");

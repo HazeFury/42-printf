@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:01 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/04 10:57:46 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:10:36 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <stdlib.h>
+
+# define BUFFER_SIZE 1024
 
 int		ft_printf(const char *str, ...);
 int		ft_manage_sign(char c, char *buffer, int *buf_index, va_list args);

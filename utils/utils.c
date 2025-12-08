@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:40:34 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/04 11:03:21 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:41:53 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,15 @@ int	ft_flush_buffer(char *buffer, int *buf_index)
 {
 	int	count;
 
+	if (!buffer || !buf_index)
+		return (-1);
+	if (*buf_index == 0)
+		return (0);
 	count = write(1, buffer, *buf_index);
 	if (count == -1)
 		return (count);
-	ft_bzero(buffer, 1024);
+	ft_bzero(buffer, BUFFER_SIZE);
+	buffer[0] = '\0';
 	*buf_index = 0;
 	return (0);
 }
