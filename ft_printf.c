@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:33:56 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/08 16:43:24 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:56:37 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	ft_bzero(buffer, BUFFER_SIZE);
 	count = ft_parsing(str, buffer, &buf_index, args);
-	if (write(1, buffer, buf_index) == -1)
-		return (-1);
 	va_end(args);
+	if (count == -1)
+		return (-1);
+	if (ft_flush_buffer(buffer, &buf_index) == -1)
+		return (-1);
 	return (count);
 }
 
