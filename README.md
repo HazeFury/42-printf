@@ -3,7 +3,10 @@
 ___
 
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/42_Logo.svg/1200px-42_Logo.svg.png" alt="42 Logo" width="150" />
+<br>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQPzuYKu7n0cWUYa5Kbg0_LrlEQAIURWeo9A&s" alt="42 Logo" width="400" />
+
+  <br>
 </div>
 
 # ft_printf
@@ -39,7 +42,7 @@ To use `ft_printf` in your own project:
    ```
 2. Compile your code linking the library:
    ```bash
-   gcc main.c -L. -lftprintf -o my_program
+   cc main.c -L. -lftprintf -o my_program
    ```
 
 ### Example
