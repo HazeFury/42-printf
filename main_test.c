@@ -6,7 +6,7 @@
 /*   By: marberge <marberge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 14:32:29 by marberge          #+#    #+#             */
-/*   Updated: 2025/12/08 19:54:11 by marberge         ###   ########.fr       */
+/*   Updated: 2025/12/10 12:04:22 by marberge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@
 //     printf("char=%c %c %c\n", 'A', 0, 127);
 
 //     /* ------------------------------------------------------------ */
-//     sep("Stress test: long string"); // echec de ce test : a corriger
+//     sep("Stress test: long string");
 
 //     char big[2000];
 //     for (int i = 0; i < 1999; i++)
@@ -113,7 +113,7 @@
 //     /* ------------------------------------------------------------ */
 //     sep("Case bizarre : argument manquant");
 
-//     ft_printf(" -> %d %s %x\n");    // volontairement mauvais
+//     ft_printf(" -> %d %s %x\n");
 //     printf(" -> %d %s %x\n");
 
 //     /* ------------------------------------------------------------ */
